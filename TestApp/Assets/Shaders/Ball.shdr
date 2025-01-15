@@ -1,0 +1,16 @@
+﻿@VERTEX_SHADER
+#version 430 core
+layout (location = 0) in vec2 aPosition;
+void main()
+{
+    gl_Position = view * vec4(aPosition, 0, 1.0);
+}
+
+@FRAGMENT_SHADER
+#version 430 core
+out vec4 FragColor;
+void main()
+{
+    FragColor = vec4(0.2, .2, .4,1);
+    
+}
