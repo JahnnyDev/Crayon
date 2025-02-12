@@ -15,10 +15,7 @@ extern "C"
 	{
 		glShaderSource(shader, 1, &source, NULL);
 	}
-	export void CompileShader(unsigned int shader)
-	{
-		glCompileShader(shader);
-	}
+
 	export bool GetShaderInfo(unsigned int shader, int flag, char info[512])
 	{
 		int success;
@@ -30,12 +27,6 @@ extern "C"
 		}
 		return true;
 	}
-	export void DetachShader(unsigned int program, unsigned int shader)
-	{
-		glDetachShader(program, shader);
-	}
-	export void DeleteShader(unsigned int shader)
-	{
-		glDeleteShader(shader);
-	}
+
+
 }

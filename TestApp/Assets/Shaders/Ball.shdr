@@ -1,16 +1,31 @@
-﻿@VERTEX_SHADER
-#version 430 core
-layout (location = 0) in vec2 aPosition;
+﻿
+@VERTEX_SHADER
+#version 330 core
+layout (location = 0) in vec3 pos;
+
+uniform mat4 world;
+uniform mat4 view;
+out vec2 uv;
+
+@IMPORT lerp
 void main()
 {
-    gl_Position = view * vec4(aPosition, 0, 1.0);
+    uv = pos.xy;
+    gl_Position = view * world * vec4(pos, 1.0);
 }
+@END
 
 @FRAGMENT_SHADER
-#version 430 core
+#version 330 core
+in vec2 uv;
+
+uniform vec3 color;
+uniform sampler2D tex;
 out vec4 FragColor;
+
 void main()
 {
-    FragColor = vec4(0.2, .2, .4,1);
-    
+    vec4 texCol = texture(tex, uv);
+    FragColor = texCol;
 }
+@END

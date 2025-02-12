@@ -33,6 +33,7 @@ extern "C"
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, versionMajor);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, versionMinor);
         glfwWindowHint(GLFW_OPENGL_PROFILE, profile);
+        glfwWindowHint(GLFW_DEPTH_BITS, 24);
 
 #ifdef __APPLE__
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -63,7 +64,8 @@ extern "C"
             return false;
         }
         glDebugMessageCallback(glDebugOutput, nullptr);
-        glEnable(GL_DEBUG_OUTPUT); 
+       // glEnable(GL_DEBUG_OUTPUT); 
+        
         return true;
     }
 

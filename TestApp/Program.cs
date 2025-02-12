@@ -1,6 +1,6 @@
-﻿using GL;
-using static GL.Flags;
-using Graphics;
+﻿using Crayon.GL;
+using static Crayon.GL.Flags;
+using Crayon.Graphics;
 
 namespace TestApp
 {
@@ -9,8 +9,11 @@ namespace TestApp
     {
         static unsafe void Main(string[] args)
         {
+            
+
             Application application = new(800, 600, "sploingle");
             application.Run();
         }
+      
     }
 }
