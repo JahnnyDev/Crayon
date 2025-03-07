@@ -2,8 +2,7 @@
 based on much better projects like openTK and GLFW.net.
 This is really just my own experiment in rendering. 
 
-If you have ideas on how to make this actually good i'm open to suggestions 
-
+If you have ideas on how to make this actually good i'm open to suggestions.
 
 ## Summary
 ### EngineGL
@@ -18,13 +17,11 @@ Handles all the externals related to STB_Image (Image loading for textures).
 Rendering stuff (buffers, shaders, ect.).
 ### Input
 mouse and keyboad input handling.
-### TestApp
-The testbed program i used for feature testing.
 ### Utilities
 stuff for managing project assets.
 ### Windowing
 stuff for creating a template windowed application.
-### MathS
+### Mathematics
 my math library.
 
-      
+I've been busy, so at this point, It might even be useable if it had any documentation ;)
