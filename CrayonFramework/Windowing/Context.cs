@@ -4,13 +4,11 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using Crayon.GL;
-using Crayon.GLFW;
 using static Crayon.GL.Flags;
 using static Crayon.GLFW.Flags;
 using Crayon.Utilities;
-
-
+using Crayon.GL;
+using Crayon.GLFW;
 
 namespace Crayon.Windowing
 {
@@ -20,7 +18,22 @@ namespace Crayon.Windowing
         private string windowName;
         public bool programShouldClose;
         public static float elapsedTime, deltaTime;
-        public static uint boundBuffer = 0u, boundVertexArray = 0u, boundShader = 0u, boundTexture = 0u;
+        public static uint boundVertexArray = 0u, boundShader = 0u, boundTexture = 0u;
+
+        public static Dictionary<int, uint> boundBuffers = new()
+        {
+            {GL_ARRAY_BUFFER, 0 },
+            {GL_COPY_READ_BUFFER, 0 },
+            {GL_COPY_WRITE_BUFFER, 0 },
+            {GL_ELEMENT_ARRAY_BUFFER, 0 },
+            {GL_PIXEL_PACK_BUFFER, 0 },
+            {GL_PIXEL_UNPACK_BUFFER, 0 },
+            {GL_TEXTURE_BUFFER, 0 },
+            {GL_TRANSFORM_FEEDBACK_BUFFER, 0 },
+            {GL_UNIFORM_BUFFER, 0 },
+
+        };
+
         public Window window;
         protected Context(int width, int height, string title)
         {

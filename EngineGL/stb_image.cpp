@@ -9,6 +9,7 @@
 
 extern "C"
 {
+
 	export unsigned char* ImageLoad(const char* file, int* width, int* height, int* channelCount)
 	{
 		 return stbi_load(file, width, height, channelCount, 0);

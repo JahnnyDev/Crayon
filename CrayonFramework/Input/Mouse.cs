@@ -1,17 +1,11 @@
 ﻿using Crayon.GLFW;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static MathS.Float;
+using Crayon.Mathematics;
 using static Crayon.GLFW.Flags;
 
 namespace Input
 {
     public static class Mouse
     {
-       
         public static IntPtr ActiveWindow;
         public static List<int> buttonsPressed = new(8);
 
@@ -24,9 +18,10 @@ namespace Input
                 Vec2 v = lastPosition;
                 return position - v;
             }
-  
         }
-        public static unsafe Vec2 position { 
+
+        public static unsafe Vec2 position
+        {
             get
             {
                 double x = 0.0;
@@ -45,6 +40,7 @@ namespace Input
             else if (!pressed && buttonsPressed.Contains(button)) buttonsPressed.Remove(button);
             return pressed;
         }
+
         public static bool GetButtonInfo(int button, out bool pressStart, out bool pressEnd)
         {
             bool pressed = glfw.GetMouseButton(ActiveWindow, button) == GLFW_PRESS;
@@ -61,11 +57,10 @@ namespace Input
                 buttonsPressed.Remove(button);
             }
             return pressed;
-
         }
-        public static bool GetButtonDown(int key) => GetButtonInfo(key, out bool s, out bool e) && s;
-        public static bool GetButtonUp(int key) => !GetButtonInfo(key, out bool s, out bool e) && e;
 
-        
+        public static bool GetButtonDown(int key) => GetButtonInfo(key, out bool s, out bool e) && s;
+
+        public static bool GetButtonUp(int key) => !GetButtonInfo(key, out bool s, out bool e) && e;
     }
 }

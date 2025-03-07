@@ -1,7 +1,7 @@
 ﻿using Crayon.GL;
-using Crayon.Windowing;
-using MathS;
+using  Crayon.Mathematics;
 using Crayon.Utilities;
+using Crayon.Windowing;
 using static Crayon.GL.Flags;
 
 namespace Crayon.Graphics.Shaders
@@ -11,7 +11,9 @@ namespace Crayon.Graphics.Shaders
         private uint id;
 
         public static implicit operator uint(ShaderProgram p) => p.id;
+
         public bool isBound { get => id == Context.boundShader; }
+
         public ShaderProgram(Shader[] shaders)
         {
             id = gl.GenShaderProgram();
@@ -73,79 +75,83 @@ namespace Crayon.Graphics.Shaders
             gl.Uniform1ui(gl.GetUniformLocation(id, name), value);
         }
 
-        public void SetUniform(string name, Float.Vec2 value)
+        public void SetUniform(string name, Vec2 value)
         {
             Bind();
-            gl.Uniform2f(gl.GetUniformLocation(id, name), value.x, value.y);
+            gl.Uniform2f(gl.GetUniformLocation(id, name), value.x, value.x);
         }
-
-        public void SetUniform(string name, Generic.Vec2<double> value)
+        public void SetUniform(string name, (float, float) value)
         {
             Bind();
-            gl.Uniform2d(gl.GetUniformLocation(id, name), value.x, value.y);
+            gl.Uniform2f(gl.GetUniformLocation(id, name), value.Item1, value.Item2);
         }
-
-        public void SetUniform(string name, Int.Vec2 value)
+        public void SetUniform(string name, (double, double) value)
         {
             Bind();
-            gl.Uniform2i(gl.GetUniformLocation(id, name), value.x, value.y);
+            gl.Uniform2d(gl.GetUniformLocation(id, name), value.Item1, value.Item2);
         }
 
-        public void SetUniform(string name, Generic.Vec2<uint> value)
+        public void SetUniform(string name, (int, int) value)
         {
             Bind();
-            gl.Uniform2ui(gl.GetUniformLocation(id, name), value.x, value.y);
+            gl.Uniform2i(gl.GetUniformLocation(id, name), value.Item1, value.Item2);
         }
 
-        public void SetUniform(string name, Float.Vec3 value)
+        public void SetUniform(string name, (uint, uint) value)
+        {
+            Bind();
+            gl.Uniform2ui(gl.GetUniformLocation(id, name), value.Item1, value.Item2);
+        }
+
+        public void SetUniform(string name, Vec3 value)
         {
             Bind();
             gl.Uniform3f(gl.GetUniformLocation(id, name), value.x, value.y, value.z);
         }
 
-        public void SetUniform(string name, Generic.Vec3<double> value)
+        public void SetUniform(string name, (double, double, double) value)
         {
             Bind();
-            gl.Uniform3d(gl.GetUniformLocation(id, name), value.x, value.y, value.z);
+            gl.Uniform3d(gl.GetUniformLocation(id, name), value.Item1, value.Item2, value.Item3);
         }
 
-        public void SetUniform(string name, Int.Vec3 value)
+        public void SetUniform(string name, (int,int,int) value)
         {
             Bind();
-            gl.Uniform3i(gl.GetUniformLocation(id, name), value.x, value.y, value.z);
+            gl.Uniform3i(gl.GetUniformLocation(id, name), value.Item1, value.Item2, value.Item3);
         }
 
-        public void SetUniform(string name, Generic.Vec3<uint> value)
+        public void SetUniform(string name, (uint, uint, uint) value)
         {
             Bind();
-            gl.Uniform3ui(gl.GetUniformLocation(id, name), value.x, value.y, value.z);
+            gl.Uniform3ui(gl.GetUniformLocation(id, name), value.Item1, value.Item2, value.Item3);
         }
 
-        public void SetUniform(string name, Float.Vec4 value)
+        public void SetUniform(string name, Vec4 value)
         {
             Bind();
             gl.Uniform4f(gl.GetUniformLocation(id, name), value.x, value.y, value.z, value.w);
         }
 
-        public void SetUniform(string name, Generic.Vec4<double> value)
+        public void SetUniform(string name, (double, double, double, double) value)
         {
             Bind();
-            gl.Uniform4d(gl.GetUniformLocation(id, name), value.x, value.y, value.z, value.w);
+            gl.Uniform4d(gl.GetUniformLocation(id, name), value.Item1, value.Item2, value.Item3, value.Item4);
         }
 
-        public void SetUniform(string name, Int.Vec4 value)
+        public void SetUniform(string name, (int, int, int, int) value)
         {
             Bind();
-            gl.Uniform4i(gl.GetUniformLocation(id, name), value.x, value.y, value.z, value.w);
+            gl.Uniform4i(gl.GetUniformLocation(id, name), value.Item1, value.Item2, value.Item3, value.Item4);
         }
 
-        public void SetUniform(string name, Generic.Vec4<uint> value)
+        public void SetUniform(string name, (uint, uint, uint, uint) value)
         {
             Bind();
-            gl.Uniform4ui(gl.GetUniformLocation(id, name), value.x, value.y, value.z, value.w);
+            gl.Uniform4ui(gl.GetUniformLocation(id, name), value.Item1, value.Item2, value.Item3, value.Item4);
         }
 
-        public unsafe void SetUniform(string name, Float.Mat4 value)
+        public unsafe void SetUniform(string name, Mat4 value)
         {
             Bind();
             float[] v = value.ToArray();

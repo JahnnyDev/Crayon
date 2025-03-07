@@ -16,12 +16,11 @@ namespace Crayon.Graphics.Buffers
             id = gl.GenVertexArray();
         }
 
-        public void Bind() 
+        public void Bind()
         {
             if (isBound) return;
             gl.BindVertexArray(id);
             Context.boundVertexArray = id;
-            
         }
     }
 }

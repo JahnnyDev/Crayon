@@ -17,6 +17,7 @@ namespace Crayon.Graphics.Textures
             id = gl.GenTexture();
             this.type = type;
         }
+
         public Texture(int type, int wrapMode, int mipmapMode, int filterMode)
         {
             id = gl.GenTexture();
@@ -26,13 +27,12 @@ namespace Crayon.Graphics.Textures
             SetFilteringMode(mipmapMode, filterMode);
         }
 
-        public void Bind() 
+        public void Bind()
         {
             if (isBound) return;
             gl.BindTexture(type, id);
             Context.boundTexture = id;
         }
-
 
         public void SetWrapMode(int mode)
         {

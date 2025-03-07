@@ -1,5 +1,4 @@
-﻿using Crayon.GL;
-using Crayon.Graphics.Shaders;
+﻿using Crayon.Graphics.Shaders;
 using Crayon.Utilities;
 using static Crayon.GL.Flags;
 
@@ -9,19 +8,20 @@ namespace Crayon.Utilities
     {
         public static string directory;
 
-        public static bool shaderEnd = false;
-        public static int boundType;
-        public static string boundCode = "";
+        private static bool shaderEnd = false;
+        private static int boundType;
+        private static string boundCode = "";
 
         public static string currentLine { get; private set; }
+
         public static readonly Dictionary<string, Func<int>> tokens = new()
         {
             //shader type keys
-            { "@VERTEX_SHADER", ShaderLibraries.DefVertexShader },
-            { "@GEOMETRY_SHADER", ShaderLibraries.DefGeometryShader},
-            { "@FRAGMENT_SHADER", ShaderLibraries.DefFragmentShader },
-            { "@IMPORT", ShaderLibraries.Import },
-            { "@END", ShaderLibraries.EndShader},
+            { "@VERTEX_SHADER", DefVertexShader },
+            { "@GEOMETRY_SHADER", DefGeometryShader},
+            { "@FRAGMENT_SHADER", DefFragmentShader },
+            { "@IMPORT", Import },
+            { "@END", EndShader},
         };
 
         private static bool IsTokenLine(string line) => line.Contains('@');
@@ -59,9 +59,36 @@ namespace Crayon.Utilities
             int line = 0;
             while (line < file.Length) shaders.Add(CreateShader(file, line, out line));
            
-            return new( shaders.ToArray());
+            ShaderProgram result = new(shaders.ToArray());
+         
+            return result;
             
         }
 
+        public static int DefVertexShader()
+        {
+            boundType = GL_VERTEX_SHADER;
+            return 0;
+        }
+        public static int DefFragmentShader()
+        {
+            boundType = GL_FRAGMENT_SHADER;
+            return 1;
+        }
+        public static int DefGeometryShader()
+        {
+            boundType = GL_GEOMETRY_SHADER;
+            return 2;
+        }
+        public static int Import()
+        {
+            boundCode += ShaderLibraries.ImportLib[ReadTokenArg(currentLine, 0)] + "\n";
+            return 3;
+        }
+        public static int EndShader()
+        {
+            shaderEnd = true;
+            return 4;
+        }
     }
 }

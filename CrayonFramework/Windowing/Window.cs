@@ -2,7 +2,6 @@
 using System.Runtime.InteropServices;
 using Crayon.GL;
 using Crayon.GLFW;
-using MathS;
 
 namespace Crayon.Windowing
 {
@@ -14,7 +13,7 @@ namespace Crayon.Windowing
         public int width { get; init; }
         public int height { get; init; }
         public string title { get; init; }
-        public Int.Vec2 size { get => new(width, height); }
+        //public Int.Vec2 size { get => new(width, height); }
         public float aspectRatio { get => (float)width / height; }
         public bool shouldClose { get => glfw.WindowShouldClose(id); }
 

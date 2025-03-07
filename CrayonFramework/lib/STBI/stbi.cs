@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace STBI
+namespace Crayon.STBI
 {
     public static class stbi
     {

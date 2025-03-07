@@ -64,7 +64,7 @@ extern "C"
             return false;
         }
         glDebugMessageCallback(glDebugOutput, nullptr);
-       // glEnable(GL_DEBUG_OUTPUT); 
+       glEnable(GL_DEBUG_OUTPUT); 
         
         return true;
     }

@@ -1,6 +1,5 @@
 ﻿using Crayon.GL;
-using MathS;
-using STBI;
+using Crayon.STBI;
 using static Crayon.GL.Flags;
 
 namespace Crayon.Graphics.Textures
@@ -9,10 +8,12 @@ namespace Crayon.Graphics.Textures
     {
         public Texture2D() : base(GL_TEXTURE_2D)
         { }
+
         public Texture2D(int wrapMode, int mipmapMode, int filterMode) : base(GL_TEXTURE_2D, wrapMode, mipmapMode, filterMode)
         { }
+
         public int width, height, channelCount;
-        public Int.Vec2 size { get => new(width, height); }
+        //public Int.Vec2 size { get => new(width, height); }
 
         public unsafe void LoadFromImage(string path, int format)
         {

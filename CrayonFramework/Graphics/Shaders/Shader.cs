@@ -1,5 +1,4 @@
 ﻿using Crayon.GL;
-using Crayon.Windowing;
 using static Crayon.GL.Flags;
 
 namespace Crayon.Graphics.Shaders
@@ -11,6 +10,7 @@ namespace Crayon.Graphics.Shaders
         public static implicit operator uint(Shader s) => s.id;
 
         public int type;
+
         public bool GetInfo(out string infoLog)
         {
             infoLog = "";

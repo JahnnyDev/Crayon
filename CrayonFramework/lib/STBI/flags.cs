@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace STBI
+namespace Crayon.STBI
 {
     public static class flags
     {
