@@ -23,7 +23,7 @@ stuff for managing project assets.
 stuff for creating a template windowed application.
 ### Mathematics
 my math library, mainly just a wrapper for System.numerics, to match the style of someting like glmSharp.
-
+## Plans
 I've been busy, so at this point, It might even be useable if it had any documentation.
 Im not gonna create an actual roadmap, but you can probably expect some eventually.
 
