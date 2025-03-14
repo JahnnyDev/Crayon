@@ -1,0 +1,7 @@
+### Summary
+This Is a collection of Example applictions to show off the usage and capabilities of the framework.
+
+## Contents
+# Instancing Benchmark 1
+A program showing off the current mesh instancing abilities of the framework.
+I can manage ~30 fps on my laptop for 3000 instances of a mesh with ~120 vertices drawn 125 times
