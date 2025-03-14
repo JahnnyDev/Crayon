@@ -1,0 +1,49 @@
+﻿
+@VERTEX_SHADER
+#version 450 core
+
+layout (location = 0) in vec3 pos;
+layout (location = 1)in vec3 nor;
+layout (location = 2) in vec4 tr1;
+layout (location = 3) in vec4 tr2;
+layout (location = 4) in vec4 tr3;
+layout (location = 5) in vec4 tr4;
+
+@IMPORT hash13
+@IMPORT lerp3
+@IMPORT rotateMatrix
+
+uniform mat4 view;
+uniform mat4 world;
+uniform float time;
+out vec3 normal;
+out vec3 color;
+out mat4 transform;
+void main()
+{
+    
+    uint idx = gl_InstanceID + uint(time * 0.1);
+    color = lerp(hash13(idx), hash13(idx + 1), fract(time * 0.1));
+    transform = mat4(tr1,tr2,tr3,tr4) * rotateMatrix(color, time * 0.7);
+    normal = nor;
+
+    gl_Position =  vec4(view *  world * transform * vec4(pos, 1.0));
+}
+@END
+
+@FRAGMENT_SHADER
+#version 450 core
+
+
+
+uniform vec3 lightDir;
+in vec3 normal;
+in vec3 color;
+in mat4 transform;
+out vec4 FragColor;
+void main()
+{
+    vec3 col = color * ((dot(normal, (transform * vec4(lightDir, 0)).xyz) + 1) *.5);
+    FragColor = vec4(col, 1);
+}
+@END
